@@ -1,0 +1,16 @@
+docker
+docker COMMAND --help #opens help files about commands
+docker run hello-world #runs a sample container with some text
+docker container ls -a #gives all containers
+docker image ls #shows all images
+docker container prune #deletes all containers
+apk add nano
+nano
+docker run -it debian /bin/bash
+docker build . -t lambdata #this builds the image for lambdata
+docker run -it lambdata /bin/bash #this uses the image to create a container
+
+#ONCE YOU'RE IN THE PYTHON SHELL (which you access with the command python3)
+import lambdata_soycode as lambdata
+dir(lambdata)
+lambdata.TEST
