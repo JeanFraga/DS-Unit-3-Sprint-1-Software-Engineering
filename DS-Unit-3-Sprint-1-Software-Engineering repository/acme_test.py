@@ -37,13 +37,10 @@ class AcmeProductTests(unittest.TestCase):
         ADJECTIVES = ['Awesome', 'Shiny', 'Impressive', 'Portable', 'Improved']
         NOUNS = ['Anvil', 'Catapult', 'Disguise', 'Mousetrap', '???']
         products = generate_products()
-        product_names = []
-        for product in range(len(products)):
-            product_names.append(products[product].name)
 
-        for product in range(len(product_names)):
-            self.assertIn(product_names[product].split(" ")[0], ADJECTIVES)
-            self.assertIn(product_names[product].split(" ")[1], NOUNS)
+        for product in range(len(products)):
+            self.assertIn(products[product].name.split(" ")[0], ADJECTIVES)
+            self.assertIn(products[product].name.split(" ")[1], NOUNS)
 
 
 if __name__ == '__main__':
