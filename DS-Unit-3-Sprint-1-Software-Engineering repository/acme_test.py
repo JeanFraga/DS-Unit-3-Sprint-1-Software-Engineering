@@ -24,19 +24,27 @@ class AcmeProductTests(unittest.TestCase):
         prod = Product('Test Product')
         self.assertEqual(prod.name, "Test Product")
 
+
 class AcmeProductTests(unittest.TestCase):
     """Making sure acme_report is superb!"""
     def test_default_num_products(self):
         """Test default product number being 30"""
         gen_prod = generate_products()
-        self.assertEqual(len(gen_prod[0]), 30)
+        self.assertEqual(len(gen_prod), 30)
 
     def test_legal_names(self):
-        """Test possible combinations"""
+        """Test possible combinations are legal"""
         ADJECTIVES = ['Awesome', 'Shiny', 'Impressive', 'Portable', 'Improved']
         NOUNS = ['Anvil', 'Catapult', 'Disguise', 'Mousetrap', '???']
-        gen_prod = generate_products()[0]
-        self.assertIn(generate_products()[0], [str(ADJECTIVES) + ' ' + str(NOUNS)])
+        products = generate_products()
+        product_names = []
+        for product in range(len(products)):
+            product_names.append(products[product].name)
+
+        for product in range(len(product_names)):
+            self.assertIn(product_names[product].split(" ")[0], ADJECTIVES)
+            self.assertIn(product_names[product].split(" ")[1], NOUNS)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -19,35 +19,33 @@ def generate_products(num_products=30):
         adjective = sample(ADJECTIVES, 1)[0]
         noun = sample(NOUNS, 1)[0]
         space = " "
-        product = adjective + space + noun
+        product_name = adjective + space + noun
+        price = randint(5, 100)
+        weight = randint(5, 100)
+        flammability = uniform(0.0, 2.5)
+        product = Product(product_name, price, weight, flammability)
         products.append(product)
 
-    prices = []
-    for price in range(num_products):
-        price = randint(5, 100)
-        prices.append(price)
-
-    weights = []
-    for weight in range(num_products):
-        weight = randint(5, 100)
-        weights.append(weight)
-
-    flammabilities = []
-    for flammability in range(num_products):
-        flammability = uniform(0.0, 2.5)
-        flammabilities.append(flammability)
-
-    return products, prices, weights, flammabilities
+    return products
 
 
 def inventory_report():
     """
     takes a list of products, and prints a "nice" summary
     """
-    products, prices, weights, flammability = generate_products()
+    products = generate_products()
 
     print("ACME CORPORATION OFFICIAL INVENTORY REPORT")
     print("Unique product names: " + str(len(products)))
+
+    prices = []
+    weights = []
+    flammabilities = []
+
+    for product in range(len(products)):
+        prices.append(products[product].price)
+        weights.append(products[product].weight)
+        flammabilities.append(products[product].flammability)
 
     def mean_function(category):
         """
@@ -60,7 +58,7 @@ def inventory_report():
 
     mean_prices = mean_function(prices)
     mean_weights = mean_function(weights)
-    mean_flammability = mean_function(flammability)
+    mean_flammability = mean_function(flammabilities)
 
     print("Average price: " + str(mean_prices))
     print("Average weight: " + str(mean_weights))
